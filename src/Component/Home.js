@@ -19,6 +19,7 @@ import findShortestPath from '../utils/shortestPath'
 const Home = () => {
   const restaurants = ["R1", "R2", "R3" , "R4"]
   const houses = ["H1", "H2", "H3", "H4", "H5"]
+  // const [totalDistance, setTotalDistance] = useState(0);
   const [deliveryExecutives, updateDeliveryExecutives] = useState([
     {
       name: "D1",
@@ -176,9 +177,14 @@ const Home = () => {
     const graph = generateGraphData();
     const distanceToReachForEachExecutive = []
     for (let i = 0; i < deliveryExecutives.length; i++) {
-      const shortestPath = findShortestPath(graph, deliveryExecutives[i].startPosition, orderData.pickupLocation)
+      const shortestPath = findShortestPath(graph, deliveryExecutives[i].startPosition, orderData.pickupLocation);
+      // console.log(shortestPath.distance);
+      // setTotalDistance(prev => {
+      //   return prev + shortestPath.distance;
+      // })
       distanceToReachForEachExecutive.push(shortestPath.distance);
     }
+    // console.log(totalDistance);
 
     const selectedIndex = distanceToReachForEachExecutive.indexOf(Math.min(...distanceToReachForEachExecutive));
     const selectedDeliveryExecutive = deliveryExecutives[selectedIndex];
